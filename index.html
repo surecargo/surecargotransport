@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SureCargo Transport — trusted cargo partner from Bantayan Island to Bacolod and Cebu. Egg delivery, boxes, dried seafoods, cargo feeds, and other accepted cargo." />
+  <meta name="theme-color" content="#174D32" />
+  <title>SureCargo Transport</title>
+  <link rel="icon" href="assets/images/logo.jpg" type="image/png" />
+  <!-- Bootstrap Icons (online CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    /* ============================================================
+       SURECARGO TRANSPORT — GLOBAL DESIGN SYSTEM
+       Brand palette derived from the SureCargo logo:
+       Forest Green, Dark Green, Medium Green, Golden Bronze,
+       Charcoal Gray, Light Gray, White.
+       ============================================================ */
+    :root {
+      /* Logo-extracted brand colors */
+      --forest-green: #174D32;
+      --dark-green: #103B27;
+      --medium-green: #286344;
+      --golden-bronze: #A58A55;
+      --charcoal: #454545;
+      --light-gray: #F3F4F2;
+      --white: #FFFFFF;
+
+      /* Semantic tokens (mapped to brand palette) */
+      --primary: var(--forest-green);
+      --primary-dark: var(--dark-green);
+      --primary-medium: var(--medium-green);
+      --accent: var(--golden-bronze);
+      --accent-hover: #8F7446;
+      --heading: var(--charcoal);
+      --text: #4A4A4A;
+      --muted: #6E6E6E;
+      --border: #DDDFD9;
+      --light-blue: #E8EFE9; /* soft green tint for icon backgrounds */
+      --amber: var(--golden-bronze); /* reused for existing .btn-amber */
+      --shadow: 0 10px 30px rgba(23, 77, 50, 0.08);
+      --shadow-lg: 0 20px 50px rgba(23, 77, 50, 0.14);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-lg: 24px;
+      --transition: 0.25s ease;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: none; }
+
+    h1, h2, h3, h4 {
+      color: var(--heading);
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(1.9rem, 5vw, 3.4rem); }
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2.3rem); }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+
+    p { color: var(--text); }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section { padding: clamp(48px, 8vw, 90px) 0; }
+    .section-light { background: var(--light-gray); }
+    .section-navy { background: var(--dark-green); color: #fff; }
+    .section-navy h2, .section-navy h3 { color: #fff; }
+    .section-navy p { color: #C9D6CD; }
+
+    .section-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto clamp(30px, 5vw, 50px);
+    }
+    .section-head p { color: var(--muted); margin-top: 12px; font-size: 1.05rem; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: var(--light-blue);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    /* ---------- BUTTONS ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      min-height: 48px;
+      font-family: var(--font);
+    }
+    .btn-primary { background: var(--dark-green); color: #fff; }
+    .btn-primary:hover { background: var(--forest-green); transform: translateY(-2px); box-shadow: 0 12px 24px rgba(23, 77, 50, 0.3); }
+    .btn-secondary { background: var(--white); color: var(--heading); border-color: var(--border); }
+    .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-amber { background: var(--golden-bronze); color: #fff; }
+    .btn-amber:hover { background: var(--accent-hover); transform: translateY(-2px); }
+    .btn-outline-white { background: transparent; color: #fff; border-color: rgba(255,255,255,0.6); }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+    .btn-sm { padding: 10px 18px; font-size: 0.88rem; min-height: 42px; }
+
+    /* ---------- HEADER ---------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 78px;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(23, 77, 50, 0.10);
+    }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand-text strong { font-size: 1.15rem; color: var(--dark-green); font-weight: 800; letter-spacing: -0.01em; }
+    .brand-text span { font-size: 0.72rem; color: var(--muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    .main-nav { display: flex; align-items: center; gap: 4px; }
+    .main-nav a {
+      padding: 9px 14px;
+      border-radius: 8px;
+      color: var(--heading);
+      font-weight: 600;
+      font-size: 0.92rem;
+      transition: var(--transition);
+    }
+    .main-nav a:hover { background: var(--light-blue); color: var(--primary); }
+    .main-nav a.active { color: var(--primary); background: var(--light-blue); }
+
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+
+    .hamburger {
+      display: none;
+      width: 46px; height: 46px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      border-radius: 10px;
+      cursor: pointer;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--dark-green);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ---------- SIDEBAR ---------- */
+    .sidebar-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 59, 39, 0.55);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 950;
+    }
+    .sidebar-overlay.open { opacity: 1; visibility: visible; }
+
+    .sidebar {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(340px, 88vw);
+      height: 100%;
+      background: var(--dark-green);
+      color: #fff;
+      z-index: 1000;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .sidebar.open { transform: translateX(0); }
+
+    .sidebar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      position: sticky;
+      top: 0;
+      background: var(--dark-green);
+      z-index: 2;
+    }
+    .sidebar-head .brand-text strong { color: #fff; }
+    .sidebar-head .brand-text span { color: #B8C7BC; }
+
+    .sidebar-close {
+      width: 40px; height: 40px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border-radius: 10px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .sidebar-close:hover { background: rgba(255,255,255,0.2); }
+
+    .sidebar-nav { padding: 14px 12px 30px; }
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 16px;
+      color: #DDE7E0;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 10px;
+      margin-bottom: 2px;
+      transition: var(--transition);
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active {
+      background: rgba(165, 138, 85, 0.22);
+      color: #fff;
+    }
+    .sidebar-nav a .ico {
+      width: 24px; text-align: center; font-size: 1rem; opacity: 0.9;
+    }
+    .sidebar-divider {
+      height: 1px; background: rgba(255,255,255,0.12); margin: 12px 16px;
+    }
+    .sidebar-cta { padding: 0 16px 20px; }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: clamp(520px, 78vh, 720px);
+      display: flex;
+      align-items: center;
+      background: linear-gradient(115deg, rgba(16, 59, 39, 0.94) 0%, rgba(23, 77, 50, 0.80) 55%, rgba(40, 99, 68, 0.60) 100%),
+                  url("assets/images/hero-truck.jpg") center/cover no-repeat;
+      color: #fff;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 20%, rgba(165, 138, 85, 0.30), transparent 55%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 2; padding: 60px 0; max-width: 780px; }
+    .hero .eyebrow { background: rgba(165, 138, 85, 0.22); color: #E8D9B8; }
+    .hero h1 { color: #fff; margin-bottom: 18px; }
+    .hero p.sub {
+      color: #E1EDE4;
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+      max-width: 640px;
+      margin-bottom: 30px;
+    }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* ---------- ROUTE CARDS ---------- */
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 26px;
+    }
+    .route-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+    .route-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .route-card-img {
+      position: relative;
+      height: 210px;
+      background: var(--light-blue);
+      overflow: hidden;
+    }
+    .route-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .route-card:hover .route-card-img img { transform: scale(1.06); }
+    .route-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: rgba(16, 59, 39, 0.90);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      backdrop-filter: blur(4px);
+    }
+    .route-card-body { padding: 26px; display: flex; flex-direction: column; flex: 1; }
+    .route-card-body h3 { margin-bottom: 8px; }
+    .route-card-body > p { color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; }
+    .cargo-list { list-style: none; margin-bottom: 22px; display: grid; gap: 9px; }
+    .cargo-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 0.93rem;
+      color: var(--text);
+    }
+    .cargo-list li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    /* Cargo feed highlight inside route cards */
+    .cargo-feed-highlight {
+      background: var(--light-blue);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      font-size: 0.92rem;
+      color: var(--dark-green);
+      border-left: 4px solid var(--golden-bronze);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .cargo-feed-highlight i {
+      color: var(--golden-bronze);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .cargo-feed-highlight strong { font-weight: 700; }
+    .route-card-body .btn { margin-top: auto; align-self: flex-start; }
+
+    /* ---------- SERVICES ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .service-img { height: 180px; background: var(--light-blue); overflow: hidden; }
+    .service-img img { width: 100%; height: 100%; object-fit: cover; }
+    .service-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+    .service-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: var(--light-blue);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+    }
+    .service-body h3 { margin-bottom: 8px; }
+    .service-body p { color: var(--muted); font-size: 0.93rem; margin-bottom: 16px; }
+    .service-body .link-arrow {
+      margin-top: auto;
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .service-body .link-arrow:hover { gap: 10px; color: var(--golden-bronze); }
+
+    /* ---------- TEAM ---------- */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .team-photo {
+      height: 220px;
+      background: linear-gradient(135deg, var(--light-blue), #D4E3D8);
+      overflow: hidden;
+    }
+    .team-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .team-info { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+    .team-info h3 { font-size: 1.05rem; margin-bottom: 4px; }
+    .team-role { color: var(--primary-medium); font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 14px; }
+    .team-info .btn { margin-top: auto; }
+
+    /* ---------- FLEET PREVIEW ---------- */
+    .fleet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .truck-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .truck-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .truck-img { height: 200px; background: var(--light-blue); overflow: hidden; }
+    .truck-img img { width: 100%; height: 100%; object-fit: cover; }
+    .truck-body { padding: 22px; }
+    .truck-body h3 { margin-bottom: 12px; }
+    .spec-list { list-style: none; display: grid; gap: 8px; margin-bottom: 18px; }
+    .spec-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.9rem;
+      padding: 7px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .spec-list li:last-child { border-bottom: none; }
+    .spec-list .k { color: var(--muted); font-weight: 600; }
+    .spec-list .v { color: var(--dark-green); font-weight: 700; text-align: right; }
+
+    /* ---------- FEATURES ---------- */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--golden-bronze); }
+    .feature-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--light-blue);
+      color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+    .feature-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .feature-card p { color: var(--muted); font-size: 0.92rem; }
+
+    /* ---------- PROCESS ---------- */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+      counter-reset: step;
+    }
+    .process-step {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+    .process-num {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: var(--dark-green);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.15rem;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .process-step h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .process-step p { color: var(--muted); font-size: 0.92rem; }
+
+    /* ---------- CTA ---------- */
+    .cta-banner {
+      background: linear-gradient(120deg, var(--dark-green) 0%, var(--forest-green) 55%, var(--medium-green) 100%);
+      border-radius: var(--radius-lg);
+      padding: clamp(36px, 6vw, 64px);
+      text-align: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: "";
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 240px; height: 240px;
+      background: radial-gradient(circle, rgba(165, 138, 85, 0.45), transparent 70%);
+    }
+    .cta-banner h2 { color: #fff; margin-bottom: 14px; position: relative; }
+    .cta-banner p { color: #D6E4DA; max-width: 640px; margin: 0 auto 26px; position: relative; }
+    .cta-banner .hero-buttons { justify-content: center; position: relative; }
+
+    /* ---------- FOOTER ---------- */
+    .site-footer { background: var(--dark-green); color: #C9D6CD; padding: 60px 0 24px; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+      gap: 34px;
+      margin-bottom: 40px;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .footer-brand img { width: 44px; height: 44px; border-radius: 8px; object-fit: contain; background: #fff; padding: 3px; }
+    .footer-brand strong { color: #fff; font-size: 1.05rem; }
+    .footer-col h4 { color: #fff; font-size: 0.95rem; margin-bottom: 16px; letter-spacing: 0.02em; }
+    .footer-col p { font-size: 0.88rem; color: #9DAF9F; margin-bottom: 10px; }
+    .footer-col ul { list-style: none; display: grid; gap: 9px; }
+    .footer-col ul a { color: #C9D6CD; font-size: 0.88rem; transition: var(--transition); }
+    .footer-col ul a:hover { color: var(--golden-bronze); padding-left: 4px; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: #9DAF9F;
+    }
+    .footer-bottom a { color: #9DAF9F; }
+    .footer-bottom a:hover { color: var(--golden-bronze); }
+
+    /* ---------- CHATBOT WIDGET ---------- */
+    .chat-fab {
+      position: fixed;
+      bottom: 22px; right: 22px;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: var(--dark-green);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(23, 77, 50, 0.45);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      z-index: 880;
+      transition: var(--transition);
+    }
+    .chat-fab:hover { transform: scale(1.08); background: var(--forest-green); }
+
+    .chat-widget {
+      position: fixed;
+      bottom: 92px; right: 22px;
+      width: min(370px, calc(100vw - 32px));
+      max-height: min(560px, calc(100vh - 130px));
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 24px 60px rgba(16, 59, 39, 0.28);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 890;
+      transform: translateY(16px) scale(0.98);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+    .chat-widget.open { transform: translateY(0) scale(1); opacity: 1; visibility: visible; }
+
+    .chat-head {
+      background: linear-gradient(120deg, var(--dark-green), var(--forest-green));
+      color: #fff;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .chat-head .avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--golden-bronze);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .chat-head .info { flex: 1; line-height: 1.2; }
+    .chat-head .info strong { display: block; font-size: 0.92rem; }
+    .chat-head .info span { font-size: 0.72rem; color: #BFD1C3; }
+    .chat-head .close-btn {
+      background: rgba(255,255,255,0.12);
+      border: none; color: #fff;
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .chat-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      background: var(--light-gray);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .msg { max-width: 84%; padding: 10px 14px; border-radius: 14px; font-size: 0.88rem; line-height: 1.5; word-wrap: break-word; }
+    .msg.bot { background: #fff; color: var(--text); border-bottom-left-radius: 4px; align-self: flex-start; box-shadow: 0 2px 8px rgba(23, 77, 50, 0.06); }
+    .msg.user { background: var(--dark-green); color: #fff; border-bottom-right-radius: 4px; align-self: flex-end; }
+    .msg.typing { display: inline-flex; gap: 4px; align-items: center; }
+    .msg.typing span {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--muted);
+      animation: blink 1.2s infinite;
+    }
+    .msg.typing span:nth-child(2) { animation-delay: 0.2s; }
+    .msg.typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes blink { 0%,80%,100% { opacity: 0.3; } 40% { opacity: 1; } }
+
+    .chat-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 16px 10px; background: var(--light-gray); }
+    .chat-suggestions button {
+      font-size: 0.76rem;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--dark-green);
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      font-family: var(--font);
+    }
+    .chat-suggestions button:hover { border-color: var(--golden-bronze); color: var(--golden-bronze); }
+
+    .chat-input-row {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      background: #fff;
+      border-top: 1px solid var(--border);
+    }
+    .chat-input-row input {
+      flex: 1;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 0.9rem;
+      font-family: var(--font);
+      outline: none;
+      color: var(--text);
+    }
+    .chat-input-row input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(23, 77, 50, 0.15); }
+    .chat-input-row button {
+      width: 46px;
+      border: none;
+      border-radius: 10px;
+      background: var(--dark-green);
+      color: #fff;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    .chat-input-row button:hover { background: var(--forest-green); }
+
+    .chat-clear {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.76rem;
+      padding: 8px;
+      cursor: pointer;
+      border-top: 1px solid var(--border);
+      font-family: var(--font);
+    }
+    .chat-clear:hover { color: var(--golden-bronze); }
+
+    /* ---------- IMAGE FALLBACK ---------- */
+    .img-fallback {
+      background: linear-gradient(135deg, var(--light-blue), #D4E3D8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ---------- FOCUS / MOTION ---------- */
+    :focus-visible { outline: 3px solid var(--golden-bronze); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .main-nav { display: none; }
+      .hamburger { display: flex; }
+      .header-actions .btn-quote-text { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .header-inner { height: 70px; }
+      .brand img { width: 48px; height: 48px; }
+      .brand-text strong { font-size: 1.02rem; }
+      .brand-text span { display: none; }
+      .hero { min-height: 480px; }
+      .hero-inner { padding: 40px 0; }
+      .hero-buttons .btn { flex: 1 1 100%; }
+      .route-card-body, .service-body, .truck-body { padding: 20px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 26px; }
+      .chat-fab { bottom: 16px; right: 16px; width: 54px; height: 54px; }
+      .chat-widget { bottom: 82px; right: 12px; left: 12px; width: auto; }
+      .team-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+      .team-photo { height: 170px; }
+    }
+    @media (max-width: 380px) {
+      .brand img { width: 42px; height: 42px; }
+      .brand-text strong { font-size: 0.95rem; }
+      .container { padding: 0 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="brand" aria-label="SureCargo Transport home">
+      <img src="assets/images/logo.jpg" alt="SureCargo Transport logo" width="58" height="58" />
+      <span class="brand-text">
+        <strong>SureCargo Transport</strong>
+        <span>Cargo &amp; Delivery</span>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="index.html" class="active">Home</a>
+      <a href="services.html">Services</a>
+      <a href="bantayan-to-bacolod.html">Bacolod Route</a>
+      <a href="bantayan-to-cebu.html">Cebu Route</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= SIDEBAR ================= -->
+<div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
+<aside class="sidebar" id="sidebar" aria-label="Site navigation" aria-hidden="true">
+  <div class="sidebar-head">
+    <span class="brand-text">
+      <strong>SureCargo Transport</strong>
+      <span>Menu</span>
+    </span>
+    <button class="sidebar-close" id="sidebarClose" aria-label="Close menu"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="active"><span class="ico"><i class="bi bi-house-door"></i></span>Home</a>
+    <a href="about.html"><span class="ico"><i class="bi bi-info-circle"></i></span>About SureCargo</a>
+    <a href="services.html"><span class="ico"><i class="bi bi-list-check"></i></span>Our Services</a>
+    <div class="sidebar-divider"></div>
+    <a href="bantayan-to-bacolod.html"><span class="ico"><i class="bi bi-truck"></i></span>Bantayan to Bacolod</a>
+    <a href="bantayan-to-cebu.html"><span class="ico"><i class="bi bi-truck"></i></span>Bantayan to Cebu</a>
+    <div class="sidebar-divider"></div>
+    <a href="owner.html"><span class="ico"><i class="bi bi-person-circle"></i></span>Meet the CEO/Owner</a>
+    <a href="drivers.html"><span class="ico"><i class="bi bi-person-badge"></i></span>Meet the Drivers</a>
+    <a href="truck-helpers.html"><span class="ico"><i class="bi bi-people"></i></span>Meet the Truck Helpers</a>
+    <a href="trucks.html"><span class="ico"><i class="bi bi-truck-front"></i></span>View All Trucks</a>
+    <a href="manager.html"><span class="ico"><i class="bi bi-clipboard-data"></i></span>Meet the Manager</a>
+    <a href="it-developer.html"><span class="ico"><i class="bi bi-code-slash"></i></span>Meet the INTERN</a>
+    <div class="sidebar-divider"></div>
+    <a href="contact.html"><span class="ico"><i class="bi bi-telephone"></i></span>Contact Information</a>
+    <a href="chatbot.html"><span class="ico"><i class="bi bi-chat-dots"></i></span>Customer Chatbot</a>
+  </nav>
+  <div class="sidebar-cta">
+    <a href="contact.html" class="btn btn-amber" style="width:100%">Request a Cargo Quote</a>
+  </div>
+</aside>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="container hero-inner">
+    <span class="eyebrow">Bantayan Island • Bacolod • Cebu</span>
+    <h1>SureCargo Transport — Your Trusted Cargo Partner</h1>
+    <p class="sub">From Bantayan to Bacolod and Cebu, we help move your eggs, boxes, dried seafoods, cargo feeds, and other accepted cargo with care and dependable service.</p>
+    <div class="hero-buttons">
+      <a href="services.html" class="btn btn-amber">Explore Our Services</a>
+      <a href="bantayan-to-bacolod.html" class="btn btn-outline-white">Bantayan to Bacolod</a>
+      <a href="bantayan-to-cebu.html" class="btn btn-outline-white">Bantayan to Cebu</a>
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROUTES ================= -->
+<section class="section" id="routes">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Our Main Routes</span>
+      <h2>Where We Deliver</h2>
+      <p>SureCargo Transport serves two primary routes from Bantayan Island. Contact us to confirm cargo acceptance, handling requirements, and current arrangements.</p>
+    </div>
+
+    <div class="route-grid">
+      <article class="route-card">
+        <div class="route-card-img">
+          <img src="assets/images/servicepics/egg.jpg" alt="Cargo boxes ready for transport" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Bantayan to Bacolod';" />
+          <span class="route-badge">Route 1</span>
+        </div>
+        <div class="route-card-body">
+          <h3>Bantayan Island → Bacolod</h3>
+          <p>Egg delivery, box transportation, dried seafoods, cargo feeds, and other accepted cargo.</p>
+          <div class="cargo-feed-highlight">
+            <i class="bi bi-basket"></i>
+            <div><strong>Cargo Feeds:</strong> We transport agricultural and commercial feeds along this route — properly packed and handled for bulk delivery.</div>
+          </div>
+          <ul class="cargo-list">
+            <li>Egg delivery</li>
+            <li>Boxes and parcels</li>
+            <li>Dried seafoods</li>
+            <li>Cargo feeds (sacks &amp; bulk)</li>
+            <li>Other accepted cargo</li>
+          </ul>
+          <a href="bantayan-to-bacolod.html" class="btn btn-primary">Explore Bacolod Route</a>
+        </div>
+      </article>
+
+      <article class="route-card">
+        <div class="route-card-img">
+          <img src="assets/images/servicepics/boxes.png" alt="Boxes and parcels prepared for cargo delivery" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Bantayan to Cebu';" />
+          <span class="route-badge">Route 2</span>
+        </div>
+        <div class="route-card-body">
+          <h3>Bantayan Island → Cebu</h3>
+          <p>General cargo transportation, boxes and parcels, commercial goods, cargo feeds, and other accepted cargo.</p>
+          <div class="cargo-feed-highlight">
+            <i class="bi bi-basket"></i>
+            <div><strong>Cargo Feeds:</strong> Agricultural feeds, commercial feeds, and feed ingredients are accepted and handled with care on this route.</div>
+          </div>
+          <ul class="cargo-list">
+            <li>General cargo</li>
+            <li>Commercial goods</li>
+            <li>Boxes and parcels</li>
+            <li>Cargo feeds (sacks &amp; bulk)</li>
+            <li>Other accepted cargo</li>
+          </ul>
+          <a href="bantayan-to-cebu.html" class="btn btn-primary">Explore Cebu Route</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="section section-light" id="services">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">What We Move</span>
+      <h2>Our Cargo Services</h2>
+      <p>From carefully packed eggs to commercial goods and cargo feeds, SureCargo Transport helps move your cargo along our served routes. Contact us to confirm acceptance and handling requirements.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-img"><img src="assets/images/servicepics/egg.jpg" alt="Egg delivery service" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Egg Delivery';" /></div>
+        <div class="service-body">
+          <div class="service-icon" aria-hidden="true"><i class="bi bi-egg"></i></div>
+          <h3>Egg Delivery</h3>
+          <p>Careful handling arrangements for eggs shipped from Bantayan Island to Bacolod.</p>
+          <a href="services.html" class="link-arrow">Learn more →</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-img"><img src="assets/images/servicepics/boxes.png" alt="Box transportation service" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Box Transportation';" /></div>
+        <div class="service-body">
+          <div class="service-icon" aria-hidden="true"><i class="bi bi-box-seam"></i></div>
+          <h3>Box Transportation</h3>
+          <p>Boxes and parcels moved with care along our Bantayan to Bacolod and Cebu routes.</p>
+          <a href="services.html" class="link-arrow">Learn more →</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-img"><img src="assets/images/servicepics/dried_seafoods.jpg" alt="Dried seafood delivery" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Dried Seafood Delivery';" /></div>
+        <div class="service-body">
+          <div class="service-icon" aria-hidden="true"><i class="bi bi-water"></i></div>
+          <h3>Dried Seafood Delivery</h3>
+          <p>Transport arrangements for properly packaged dried seafoods from Bantayan Island.</p>
+          <a href="services.html" class="link-arrow">Learn more →</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-img"><img src="assets/images/servicepics/cement.png" alt="General cargo service" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='General Cargo';" /></div>
+        <div class="service-body">
+          <div class="service-icon" aria-hidden="true"><i class="bi bi-truck"></i></div>
+          <h3>Cement Sacks</h3>
+          <p>General cargo transportation for Bantayan Island to Cebu and other served arrangements.</p>
+          <a href="services.html" class="link-arrow">Learn more →</a>
+        </div>
+      </article>
+
+      <!-- Cargo Feeds service -->
+      <article class="service-card">
+        <div class="service-img"><img src="assets/images/servicepics/feeds.png" alt="Cargo feeds delivery service" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Cargo Feeds';" /></div>
+        <div class="service-body">
+          <div class="service-icon" aria-hidden="true"><i class="bi bi-basket"></i></div>
+          <h3>Cargo Feeds</h3>
+          <p>Transport of agricultural and commercial cargo feeds — sacks and bulk loads — along our Bantayan to Bacolod and Cebu routes.</p>
+          <a href="services.html" class="link-arrow">Learn more →</a>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <div class="service-img"><img src="assets/images/trucks/white/white5.jpeg" alt="Customer cargo inquiries" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Cargo Inquiries';" /></div>
+        <div class="service-body">
+          <div class="service-icon" aria-hidden="true"><i class="bi bi-chat-dots"></i></div>
+          <h3>Customer Cargo Inquiries</h3>
+          <p>Ask about cargo acceptance, packaging, rates, and arrangements before shipping.</p>
+          <a href="contact.html" class="link-arrow">Inquire now →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section class="section" id="team">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Surecargo Transport Family</span>
+      <h2>Meet Our Team</h2>
+      <p>The SureCargo Transport team works together to help move your cargo with care and clear communication.</p>
+    </div>
+
+    <div class="team-grid">
+      <article class="team-card">
+        <div class="team-photo"><img src="assets/images/owner.png" alt="Portrait of the company owner" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Owner';" /></div>
+        <div class="team-info">
+          <h3>Atty. Ray Lambert Menchavez</h3>
+          <p class="team-role">CEO/Owner</p>
+          <a href="owner.html" class="btn btn-secondary btn-sm">View Profile</a>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-photo"><img src="assets/images/drivers/nonoy.png" alt="Portrait of driver Nonoy Tradio" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Nonoy Tradio';" /></div>
+        <div class="team-info">
+          <h3>Nonoy T.</h3>
+          <p class="team-role">Company Driver</p>
+          <a href="drivers.html" class="btn btn-secondary btn-sm">View Profile</a>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-photo"><img src="assets/images/drivers/racky.png" alt="Portrait of driver Racky Melecio" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Racky Melecio';" /></div>
+        <div class="team-info">
+          <h3>Racky M.</h3>
+          <p class="team-role">Company Driver</p>
+          <a href="drivers.html" class="btn btn-secondary btn-sm">View Profile</a>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-photo"><img src="assets/images/helpers/ramram.png" alt="Portrait of truck helper Ramram" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Ramram';" /></div>
+        <div class="team-info">
+          <h3>Ramram</h3>
+          <p class="team-role">Truck Helper</p>
+          <a href="truck-helpers.html" class="btn btn-secondary btn-sm">View Profile</a>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-photo"><img src="assets/images/helpers/mar.png" alt="Portrait of truck helper Mar Capuz" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Mar Capuz';" /></div>
+        <div class="team-info">
+          <h3>Mar Capuz</h3>
+          <p class="team-role">Truck Helper</p>
+          <a href="truck-helpers.html" class="btn btn-secondary btn-sm">View Profile</a>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-photo"><img src="assets/images/helpers/dian.png" alt="Portrait of truck helper Mark Dian" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Mark Dian';" /></div>
+        <div class="team-info">
+          <h3>Mark Dian</h3>
+          <p class="team-role">Truck Helper</p>
+          <a href="truck-helpers.html" class="btn btn-secondary btn-sm">View Profile</a>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-photo"><img src="assets/images/helpers/richard.png" alt="Portrait of truck helper Richard" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Richard';" /></div>
+        <div class="team-info">
+          <h3>Richard</h3>
+          <p class="team-role">Truck Helper</p>
+          <a href="truck-helpers.html" class="btn btn-secondary btn-sm">View Profile</a>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-photo"><img src="assets/images/ondo.png" alt="Portrait of operations manager Ondo Rubio" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Ondo Rubio';" /></div>
+        <div class="team-info">
+          <h3>Ondo Rubia</h3>
+          <p class="team-role">Manager/Cargo Organizer</p>
+          <a href="manager.html" class="btn btn-secondary btn-sm">View Profile</a>
+        </div>
+      </article>
+
+      <article class="team-card">
+        <div class="team-photo"><img src="assets/images/developer.png" alt="Portrait of IT developer Rogelio Tradio Jr." loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='Rogelio Tradio Jr.';" /></div>
+        <div class="team-info">
+          <h3>Rogelio Tradio Jr. aka Kidoy</h3>
+          <p class="team-role">Intern</p>
+          <a href="it-developer.html" class="btn btn-secondary btn-sm">View Profile</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLEET ================= -->
+<section class="section section-light" id="fleet">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Surecargo Transport Trucks</span>
+      <h2>Our Trucks</h2>
+      <p>These trucks are shown as sample layout demonstrations. Actual fleet specifications and availability must be confirmed by SureCargo Transport.</p>
+    </div>
+
+    <div class="fleet-grid">
+      <article class="truck-card">
+        <div class="truck-img"><img src="assets/images/trucks/white/white1.jpg" alt="Sample cargo truck 1" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='SureCargo Blue Runner';" /></div>
+        <div class="truck-body">
+          <h3>SureCargo Blue Runner</h3>
+          <ul class="spec-list">
+            <li><span class="k">Model</span><span class="v">FUSO</span></li>
+            <li><span class="k">Year</span><span class="v">2020</span></li>
+            <li><span class="k">Rated Load</span><span class="v">30 tons</span></li>
+            <li><span class="k">Body</span><span class="v">TEN WHEELERS</span></li>
+          </ul>
+          <a href="trucks.html" class="btn btn-secondary btn-sm">View Details</a>
+        </div>
+      </article>
+
+      <article class="truck-card">
+        <div class="truck-img"><img src="assets/images/trucks/orange/orange1.png" alt="Sample cargo truck 2" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='SureCargo Island Hauler';" /></div>
+        <div class="truck-body">
+          <h3>SureCargo Island Hauler</h3>
+          <ul class="spec-list">
+            <li><span class="k">Model</span><span class="v">ISUZU</span></li>
+            <li><span class="k">Year</span><span class="v">2019</span></li>
+            <li><span class="k">Rated Load</span><span class="v">30 tons</span></li>
+            <li><span class="k">Body</span><span class="v">Cargo truck</span></li>
+          </ul>
+          <a href="trucks.html" class="btn btn-secondary btn-sm">View Details</a>
+        </div>
+      </article>
+
+      <article class="truck-card">
+        <div class="truck-img"><img src="assets/images/trucks/truck-03.jpg" alt="Sample cargo truck 3" loading="lazy" onerror="this.style.display='none';this.parentNode.classList.add('img-fallback');this.parentNode.textContent='SureCargo Fresh Cargo';" /></div>
+        <div class="truck-body">
+          <h3>SureCargo Fresh Cargo</h3>
+          <ul class="spec-list">
+            <li><span class="k">Model</span><span class="v">Isuzu N-Series</span></li>
+            <li><span class="k">Year</span><span class="v">2024 (Sample)</span></li>
+            <li><span class="k">Rated Load</span><span class="v">3 metric tons</span></li>
+            <li><span class="k">Body</span><span class="v">Enclosed cargo body</span></li>
+          </ul>
+          <a href="trucks.html" class="btn btn-secondary btn-sm">View Details</a>
+        </div>
+      </article>
+    </div>
+
+    <div style="text-align:center; margin-top:30px;">
+      <a href="trucks.html" class="btn btn-primary">View All Trucks</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY CHOOSE ================= -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Why SureCargo</span>
+      <h2>Why Choose SureCargo Transport?</h2>
+      <p>We focus on the fundamentals: clear communication, careful handling, and dependable arrangements.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true"><i class="bi bi-chat-dots"></i></div>
+        <h3>Convenient Cargo Inquiries</h3>
+        <p>Reach out by phone, email, or chat to ask about your shipment before sending it.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true"><i class="bi bi-box-seam"></i></div>
+        <h3>Multiple Cargo Options</h3>
+        <p>Eggs, boxes, dried seafoods, cargo feeds, and other accepted cargo along our served routes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true"><i class="bi bi-person-badge"></i></div>
+        <h3>A Dedicated Transportation Team</h3>
+        <p>Drivers and truck helpers work together to handle your cargo along the trip.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true"><i class="bi bi-telephone"></i></div>
+        <h3>Clear Customer Communication</h3>
+        <p>Contact the company for updates and arrangements about your shipment.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true"><i class="bi bi-hand-thumbs-up"></i></div>
+        <h3>Careful Handling</h3>
+        <p>Handling appropriate to the goods you are shipping, when properly prepared and packaged.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon" aria-hidden="true"><i class="bi bi-envelope-paper"></i></div>
+        <h3>Easy Contact Options</h3>
+        <p>Multiple contact channels make it easier to ask questions and confirm details.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="section section-light" id="process">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How It Works</span>
+      <h2>Our Cargo Delivery Process</h2>
+      <p>A simple way to start a cargo inquiry with SureCargo Transport.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <h3>Contact SureCargo Transport</h3>
+        <p>Reach out through phone, email, chat, or the contact form to start your inquiry.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <h3>Share Cargo Details</h3>
+        <p>Provide your cargo type, size, weight, and destination so we can review your request.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <h3>Confirm the Arrangement</h3>
+        <p>Discuss the quotation and delivery arrangements with the company.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">4</div>
+        <h3>Follow Agreed Instructions</h3>
+        <p>Follow the agreed instructions and contact the company for updates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Your Cargo, Our Commitment.</h2>
+      <p>Need to send eggs, boxes, dried seafoods, cargo feeds, or other accepted cargo? Contact SureCargo Transport and let us discuss your delivery needs.</p>
+      <div class="hero-buttons">
+        <a href="contact.html" class="btn btn-amber">Contact Us</a>
+        <a href="chatbot.html" class="btn btn-outline-white">Chat with SureCargo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="assets/images/logo.jpg" alt="SureCargo Transport logo" width="44" height="44" />
+          <strong>SureCargo Transport</strong>
+        </div>
+        <p>Cargo transportation and delivery from Bantayan Island to Bacolod and Cebu. Eggs, boxes, dried seafoods, cargo feeds, and other accepted cargo.</p>
+        <p style="margin-top:14px; font-size:0.8rem; color:#7A8F7E;">Sample contact details shown on this website are placeholders and must be replaced before publication.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Our Routes</h4>
+        <ul>
+          <li><a href="bantayan-to-bacolod.html">Bantayan to Bacolod</a></li>
+          <li><a href="bantayan-to-cebu.html">Bantayan to Cebu</a></li>
+          <li><a href="services.html">Our Services</a></li>
+          <li><a href="trucks.html">View All Trucks</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Our Team</h4>
+        <ul>
+          <li><a href="owner.html">Owner</a></li>
+          <li><a href="drivers.html">Drivers</a></li>
+          <li><a href="truck-helpers.html">Truck Helpers</a></li>
+          <li><a href="manager.html">Manager</a></li>
+          <li><a href="it-developer.html">Intern</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><a href="contact.html">Contact Information</a></li>
+          <li><a href="chatbot.html">Customer Chatbot</a></li>
+          <li><a href="about.html">About SureCargo</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> SureCargo Transport. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= CHATBOT WIDGET ================= -->
+<button class="chat-fab" id="chatFab" aria-label="Open SureCargo chat assistant" aria-expanded="false" aria-controls="chatWidget"><i class="bi bi-chat-dots-fill"></i></button>
+
+<div class="chat-widget" id="chatWidget" role="dialog" aria-label="SureCargo chat assistant" aria-hidden="true">
+  <div class="chat-head">
+    <div class="avatar" aria-hidden="true">SC</div>
+    <div class="info">
+      <strong>SureCargo Assistant</strong>
+      <span>Rule-based • Not AI</span>
+    </div>
+    <button class="close-btn" id="chatClose" aria-label="Close chat"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <div class="chat-body" id="chatBody" aria-live="polite"></div>
+  <div class="chat-suggestions" id="chatSuggestions"></div>
+  <form class="chat-input-row" id="chatForm">
+    <input type="text" id="chatInput" placeholder="Ask about cargo, routes, or contact info…" aria-label="Type your message" autocomplete="off" />
+    <button type="submit" aria-label="Send message"><i class="bi bi-send"></i></button>
+  </form>
+  <button class="chat-clear" id="chatClear">Clear chat</button>
+</div>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="app.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>
